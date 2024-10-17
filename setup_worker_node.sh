@@ -227,7 +227,7 @@ fi
 echo -e "\033[32mInstalling prerequisites\033[0m"
 
 apt-get update -q
-apt-get install -qqy apt-transport-https ca-certificates curl software-properties-common gzip gnupg lsb-release
+apt-get install -qqy apt-transport-https ca-certificates curl software-properties-common gzip gnupg lsb-release socat
 
 # Add Docker Repository https://docs.docker.com/engine/install/ubuntu/
 

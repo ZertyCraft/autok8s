@@ -332,7 +332,7 @@ fi
 echo -e "\033[32mInstalling prerequisites\033[0m"
 
 apt-get update -q
-apt-get install -qqy apt-transport-https ca-certificates curl software-properties-common gzip gnupg lsb-release
+apt-get install -qqy apt-transport-https ca-certificates curl software-properties-common gzip gnupg lsb-release socat
 
 # Add Docker Repository https://docs.docker.com/engine/install/ubuntu/
 
@@ -632,7 +632,7 @@ echo -e "\033[36mRun \033[0m\033[35mcat ~/.kube/config\033[0m\033[36m to get the
 echo -e "\033[36mRun \033[0m\033[35mkubeadm token create --print-join-command\033[0m\033[36m to print the node join command for your cluster. \033[0m"
 echo -e "\033[36m\nThe Kubernetes node join command is:\n\033[0m\033[35m$JOIN_COMMAND_OUTPUT\033[0m"
 echo -e "\033[36m\nThe Autok8s node join command which uses the setup_worker_node.sh script is:\033[0m\033[35m"
-echo -e "curl -s https://raw.githubusercontent.com/7wingfly/autok8s/main/setup_worker_node.sh | sudo bash -s -- \\
+echo -e "curl -s https://raw.githubusercontent.com/ZertyCraft/autok8s/main/setup_worker_node.sh | sudo bash -s -- \\
     --k8s-master-ip $JOIN_IP \\
     --k8s-master-port $JOIN_PORT \\
     --token $JOIN_TOKEN \\

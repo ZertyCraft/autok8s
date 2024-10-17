@@ -1,4 +1,4 @@
-# Autok8s (Automatic Kubernetes)
+# Autok8s (Automatic Kubernetes) (based on 7wingfly repository)
 
 Autok8s aims to fully automate the installation of self-hosted Kubernetes clusters in a bare-metal or virtual machine based environment. 
 
@@ -58,7 +58,7 @@ Here's a high-level overview of the steps `setup_master_node.sh` will perform:
 
 - Prints a message containing the command and parameters for joining a node to the cluster using the AutoK8s `setup_worker_node.sh` script.
 
-Once your master node is up and running you can use the manifests found in the [TestManifests/Storage](https://github.com/7wingfly/autok8s/tree/main/TestManifests/Storage) directory to test out NFS and SMB and storage. In the near future other manifests will be added for things like networking.
+Once your master node is up and running you can use the manifests found in the [TestManifests/Storage](https://github.com/ZertyCraft/autok8s/tree/main/TestManifests/Storage) directory to test out NFS and SMB and storage. In the near future other manifests will be added for things like networking.
 
 ### Worker Node Script:
 
@@ -88,10 +88,10 @@ If you run this on a VM and have the ability to take a snapshot before you start
 
 There a quite a few paramters you can pass into the script. At the very least you will need to provide the IP range for the load balancer. The IP range should be outside of your DHCP scope, or alternatively DHCP reservations should be made to ensure you do not have IP address conflicts between the [services](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) in Kubernetes and other devices on your local network.
 
-It's recommended to read the Master Node Parameters [document](https://github.com/7wingfly/autok8s/tree/main/NodeParameters_Master.md) for details on all available parameters before you begin.
+It's recommended to read the Master Node Parameters [document](https://github.com/ZertyCraft/autok8s/tree/main/NodeParameters_Master.md) for details on all available parameters before you begin.
 
 ## Go Time!
-You can run the `setup_master_node.sh` script in one of two ways. Download or copy & paste the script directly from [here](https://raw.githubusercontent.com/7wingfly/autok8s/main/setup_master_node.sh), give it execute permissions and run it as `sudo`.
+You can run the `setup_master_node.sh` script in one of two ways. Download or copy & paste the script directly from [here](https://raw.githubusercontent.com/ZertyCraft/autok8s/main/setup_master_node.sh), give it execute permissions and run it as `sudo`.
 
 ```
 sudo chmod +x ./setup_master_node.sh
@@ -101,14 +101,14 @@ sudo ./setup_master_node.sh --k8s-load-balancer-ip-range <IP range or CIDR>
 Or you can run it straight from GitHub using the `curl` command as follows:
 
 ```
-curl -s https://raw.githubusercontent.com/7wingfly/autok8s/main/setup_master_node.sh | sudo bash -s -- \
+curl -s https://raw.githubusercontent.com/ZertyCraft/autok8s/main/setup_master_node.sh | sudo bash -s -- \
     --k8s-load-balancer-ip-range <IP range or CIDR>
 ```
 
 Note that if your server has more than one IP address you will need to specify which to use for the Kubernetes Server API. The script will not proceed if more than one is detected.
 
 ```
-curl -s https://raw.githubusercontent.com/7wingfly/autok8s/main/setup_master_node.sh | sudo bash -s -- \
+curl -s https://raw.githubusercontent.com/ZertyCraft/autok8s/main/setup_master_node.sh | sudo bash -s -- \
     --ip-address <master node IP> \
     --k8s-load-balancer-ip-range <IP range or CIDR>
 ```
@@ -119,12 +119,12 @@ Once installation is complete the following message will be shown detailing the 
 
 ![complete-message](https://user-images.githubusercontent.com/13077550/222972633-63b91c73-e922-486a-9025-9ae78a630175.JPG)
 
-The `setup_worker_node.sh` script also has several parameters you can use to configure the worker nodes as needed. Read the Worker Node Parameters [document](https://github.com/7wingfly/autok8s/tree/main/NodeParameters_Worker.md) for details on all available parameters before you begin.
+The `setup_worker_node.sh` script also has several parameters you can use to configure the worker nodes as needed. Read the Worker Node Parameters [document](https://github.com/ZertyCraft/autok8s/tree/main/NodeParameters_Worker.md) for details on all available parameters before you begin.
 
 As shown earlier in the success message, the `setup_worker_node.sh` command can also be ran from GitHub using the `curl` command:
 
 ```
-curl -s https://raw.githubusercontent.com/7wingfly/autok8s/main/setup_worker_node.sh | sudo bash -s -- \
+curl -s https://raw.githubusercontent.com/ZertyCraft/autok8s/main/setup_worker_node.sh | sudo bash -s -- \
     --k8s-master-ip <master node IP> \
     --k8s-master-port 6443 \
     --token <token> \
